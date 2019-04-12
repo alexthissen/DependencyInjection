@@ -51,6 +51,7 @@ namespace ASPNETCore30WebApplication
             //services.AddDemos();
 
             // Extension methods for registering service type descriptors
+            services.AddHealthChecks();
             services.AddHttpClient("ImpatientClient", options =>
                 {
                     options.Timeout = TimeSpan.FromMilliseconds(500);
@@ -58,7 +59,15 @@ namespace ASPNETCore30WebApplication
                 .AddPolicyHandlerFromRegistry("Impatient")
                 .AddTransientHttpErrorPolicy(p => p.RetryAsync(3))
                 .AddTypedClient(client => RestService.For<IGenderizeClient>(client));
-            services.AddHealthChecks();
+
+            // Options to configure options
+            services.Configure<GenderizeApiOptions>(Configuration.GetSection("GenderizeApiOptions"));
+            services.AddOptions<GenderizeApiOptions>("special")
+                .Configure<IRing, IOnce>((options, ring, once) =>
+                    {
+                        options.Cache = ring.CanIRuleThemAll();
+                    })
+                .Validate(options => String.IsNullOrEmpty(options.DeveloperApiKey));
 
             // Configuration options
             services.Configure<CookiePolicyOptions>(options =>
@@ -67,15 +76,6 @@ namespace ASPNETCore30WebApplication
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            services.Configure<GenderizeApiOptions>(Configuration.GetSection("GenderizeApiOptions"));
-            services.AddOptions<GenderizeApiOptions>()
-                .Configure<IRing, IOnce>((options, ring, once) =>
-                    {
-                        options.Cache = ring.CanIRuleThemAll();
-                    })
-                .Validate(options => String.IsNullOrEmpty(options.DeveloperApiKey));
-
             services.AddMvc()
                 .AddNewtonsoftJson();
         }

@@ -29,6 +29,8 @@ namespace CustomDIWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks();
+
             services.AddMvc()
                 .AddNewtonsoftJson();
 
@@ -41,6 +43,11 @@ namespace CustomDIWebAPI
 
             var container = containerBuilder.Build();
             return new AutofacServiceProvider(container);
+        }
+
+        public void ConfigureContainer(IContainer container)
+        {
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

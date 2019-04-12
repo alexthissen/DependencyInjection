@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNETCore30WebApplication", "ASPNETCore30WebApplication\ASPNETCore30WebApplication.csproj", "{3BC95DCD-C241-4784-9206-8D90DEC0609B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCore30WebApplication", "ASPNETCore30WebApplication\ASPNETCore30WebApplication.csproj", "{3BC95DCD-C241-4784-9206-8D90DEC0609B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomDIWebAPI", "CustomDIWebAPI\CustomDIWebAPI.csproj", "{90F7EF00-302A-42A1-839E-C9A09D2DC5C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomDIWebAPI", "CustomDIWebAPI\CustomDIWebAPI.csproj", "{90F7EF00-302A-42A1-839E-C9A09D2DC5C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericHostWorkerApp", "GenericHostWorkerApp\GenericHostWorkerApp.csproj", "{38D74F52-9898-449D-A790-DAA59622244C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleContainer.Tests", "SampleContainer.Tests\SampleContainer.Tests.csproj", "{055A41F5-8567-448E-9803-ACB1CD3A0A2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleContainer", "SampleContainer\SampleContainer.csproj", "{462F2CD0-6123-450E-A9D6-2D439C5403F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{90F7EF00-302A-42A1-839E-C9A09D2DC5C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90F7EF00-302A-42A1-839E-C9A09D2DC5C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90F7EF00-302A-42A1-839E-C9A09D2DC5C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D74F52-9898-449D-A790-DAA59622244C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D74F52-9898-449D-A790-DAA59622244C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D74F52-9898-449D-A790-DAA59622244C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D74F52-9898-449D-A790-DAA59622244C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{055A41F5-8567-448E-9803-ACB1CD3A0A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{055A41F5-8567-448E-9803-ACB1CD3A0A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{055A41F5-8567-448E-9803-ACB1CD3A0A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{055A41F5-8567-448E-9803-ACB1CD3A0A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{462F2CD0-6123-450E-A9D6-2D439C5403F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{462F2CD0-6123-450E-A9D6-2D439C5403F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{462F2CD0-6123-450E-A9D6-2D439C5403F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{462F2CD0-6123-450E-A9D6-2D439C5403F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CustomDIWebAPI.Infrastructure
+namespace GenericHostWorkerApp
 {
-    public interface IThing
+    public interface IThingService
     {
         IEnumerable<string> ProduceValues();
     }
