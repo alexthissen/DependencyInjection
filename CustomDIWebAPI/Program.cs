@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using LightInject;
+using LightInject.Microsoft.DependencyInjection;
+using LightInject.Microsoft.AspNetCore.Hosting;
 
 namespace CustomDIWebAPI
 {
@@ -20,7 +23,7 @@ namespace CustomDIWebAPI
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-
+                .UseLightInject()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

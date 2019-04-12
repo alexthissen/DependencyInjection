@@ -41,7 +41,10 @@ namespace GenericHostWorkerApp
                 })
                 .ConfigureServices((context, services) =>
                 {
+                    // Other services
                     services.AddHealthChecks();
+
+                    // Hosted background services (IHostedService and BackgroundService)
                     services.AddHostedService<Worker>();
                 });
 
