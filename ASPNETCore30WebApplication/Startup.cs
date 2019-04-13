@@ -45,6 +45,8 @@ namespace ASPNETCore30WebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            #region Demo 2      
             // Custom registrations
             services.AddSingleton<IRing, TheOneRing>();
             services.AddTransient<IOnce, Matchstick>();
@@ -56,7 +58,6 @@ namespace ASPNETCore30WebApplication
                 {
                     options.Timeout = TimeSpan.FromMilliseconds(500);
                 })
-                .AddPolicyHandlerFromRegistry("Impatient")
                 .AddTransientHttpErrorPolicy(p => p.RetryAsync(3))
                 .AddTypedClient(client => RestService.For<IGenderizeClient>(client));
 
@@ -68,6 +69,7 @@ namespace ASPNETCore30WebApplication
                         options.Cache = ring.CanIRuleThemAll();
                     })
                 .Validate(options => String.IsNullOrEmpty(options.DeveloperApiKey));
+            #endregion
 
             // Configuration options
             services.Configure<CookiePolicyOptions>(options =>

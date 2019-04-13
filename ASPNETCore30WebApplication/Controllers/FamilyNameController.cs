@@ -7,6 +7,7 @@ using ASPNETCore30WebApplication.Infrastructure;
 using ASPNETCore30WebApplication.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Polly.Timeout;
@@ -21,14 +22,18 @@ namespace ASPNETCore30WebApplication.Controllers
         private readonly IGenderizeClient genderizeClient;
         private readonly ILogger<FamilyNameController> logger;
         private readonly IOptionsSnapshot<GenderizeApiOptions> genderizeOptions;
+        private readonly IHttpContextAccessor accessor;
 
         public FamilyNameController(
             IGenderizeClient genderizeClient,
             IOptionsSnapshot<GenderizeApiOptions> genderizeOptions,
-            ILoggerFactory logger)
+            ILoggerFactory logger,
+            IHttpContextAccessor accessor
+            )
         {
             this.genderizeClient = genderizeClient;
             this.genderizeOptions = genderizeOptions;
+            this.accessor = accessor;
             this.logger = logger.CreateLogger<FamilyNameController>();
         }
 
@@ -48,6 +53,9 @@ namespace ASPNETCore30WebApplication.Controllers
             GenderizeResult result = null;
             FamilyProfile profile;
 
+            // Service location if you need that
+            var localClient = accessor.HttpContext.RequestServices.GetRequiredService<IGenderizeClient>();
+ 
             try
             {
                 string baseUrl = genderizeOptions.Value.BaseUrl;

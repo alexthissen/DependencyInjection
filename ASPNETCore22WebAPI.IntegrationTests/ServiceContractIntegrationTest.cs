@@ -51,6 +51,5 @@ namespace ASPNETCore22WebAPI.IntegrationTests
             string responseHtml = await response.Content.ReadAsStringAsync();
             Assert.IsTrue(responseHtml.Contains("mock1"));
         }
-
     }
 }

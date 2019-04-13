@@ -76,7 +76,7 @@ namespace LightInject.Microsoft.AspNetCore.Hosting
         public static IHostBuilder UseLightInject(this IHostBuilder hostBuilder, ContainerOptions options)
         {
             return hostBuilder.UseServiceProviderFactory(context => new LightInjectServiceProviderFactory(options.WithMicrosoftSettings()));
-            return hostBuilder.ConfigureServices(services => services.AddSingleton<IServiceProviderFactory<IServiceContainer>>(sp => new LightInjectServiceProviderFactory(options.WithMicrosoftSettings())));
+            //return hostBuilder.ConfigureServices(services => services.AddSingleton<IServiceProviderFactory<IServiceContainer>>(sp => new LightInjectServiceProviderFactory(options.WithMicrosoftSettings())));
         }
     }
 
