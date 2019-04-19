@@ -23,10 +23,7 @@ namespace CustomDIWebAPI
             services.AddHealthChecks();
 
             services.AddMvc()
-                .AddControllersAsServices()
                 .AddNewtonsoftJson();
-
-            //return services.CreateLightInjectServiceProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

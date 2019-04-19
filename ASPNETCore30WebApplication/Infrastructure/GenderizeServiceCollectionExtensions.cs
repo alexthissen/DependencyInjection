@@ -1,4 +1,5 @@
 ﻿using ASPNETCore30WebApplication.Demos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace ASPNETCore30WebApplication.Infrastructure
             services.AddTransient<IOnce, Matchstick>();
             services.AddTransient(typeof(IBag<>), typeof(Cup<>));
             services.AddTransient<IOnce, SelfLightingMatchstick>();
+
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
             return services;
         }

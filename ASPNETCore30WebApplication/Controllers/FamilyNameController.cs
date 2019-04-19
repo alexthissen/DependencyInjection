@@ -28,8 +28,7 @@ namespace ASPNETCore30WebApplication.Controllers
             IGenderizeClient genderizeClient,
             IOptionsSnapshot<GenderizeApiOptions> genderizeOptions,
             ILoggerFactory logger,
-            IHttpContextAccessor accessor
-            )
+            IHttpContextAccessor accessor)
         {
             this.genderizeClient = genderizeClient;
             this.genderizeOptions = genderizeOptions;

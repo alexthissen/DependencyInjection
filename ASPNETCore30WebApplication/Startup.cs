@@ -45,8 +45,8 @@ namespace ASPNETCore30WebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Demo 2 
 
-            #region Demo 2      
             // Custom registrations
             services.AddSingleton<IRing, TheOneRing>();
             services.AddTransient<IOnce, Matchstick>();
@@ -54,21 +54,24 @@ namespace ASPNETCore30WebApplication
 
             // Extension methods for registering service type descriptors
             services.AddHealthChecks();
-            services.AddHttpClient("ImpatientClient", options =>
-                {
-                    options.Timeout = TimeSpan.FromMilliseconds(500);
-                })
-                .AddTransientHttpErrorPolicy(p => p.RetryAsync(3))
-                .AddTypedClient(client => RestService.For<IGenderizeClient>(client));
 
             // Options to configure options
             services.Configure<GenderizeApiOptions>(Configuration.GetSection("GenderizeApiOptions"));
             services.AddOptions<GenderizeApiOptions>("special")
                 .Configure<IRing, IOnce>((options, ring, once) =>
-                    {
-                        options.Cache = ring.CanIRuleThemAll();
-                    })
+                {
+                    options.Cache = ring.CanIRuleThemAll();
+                })
                 .Validate(options => String.IsNullOrEmpty(options.DeveloperApiKey));
+
+            services.AddHttpClient("ImpatientClient", options =>
+                {
+                    options.Timeout = TimeSpan.FromMilliseconds(500);
+                    options.BaseAddress = new Uri(Configuration.GetSection("GenderizeApiOptions").GetValue<string>("BaseUrl"));
+                })
+                .AddTransientHttpErrorPolicy(p => p.RetryAsync(3))
+                .AddTypedClient(client => RestService.For<IGenderizeClient>(client));
+
             #endregion
 
             // Configuration options
