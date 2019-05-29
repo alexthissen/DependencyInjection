@@ -17,10 +17,5 @@ namespace SampleContainer
 
         public IServiceProvider Build() =>
             new DefaultServiceProviderFactory().CreateServiceProvider(services);
-
-        public void AddThings()
-        {
-            //services.AddSingleton<IThingService, ThingService>();
-        }
     }
 }

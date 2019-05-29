@@ -18,13 +18,14 @@ namespace GenericHostWorkerApp
         {
             var isService = !(Debugger.IsAttached || args.Contains("--console"));
 
-            await CreateHostBuilder(args).Build().RunAsync();
+            await CreateCustomHostBuilder(args).Build().RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices(services =>
                 {
+                    services.AddThings();
                     services.AddHostedService<Worker>();
                 });
 
@@ -33,20 +34,28 @@ namespace GenericHostWorkerApp
         {
             var host = new HostBuilder();
             host
+                .ConfigureLogging((hostingContext, logging) => 
+                {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    logging.AddConsole();
+                    logging.AddDebug();
+                    logging.AddEventSourceLogger();
+                })
                 .UseServiceProviderFactory<SampleServiceContainerBuilder>(new SampleServiceContainerFactory())
                 .ConfigureContainer<SampleServiceContainerBuilder>((hostContext, container) =>
                 {
-                    container.AddThings();
                     Console.WriteLine(hostContext.HostingEnvironment.ApplicationName);
                 })
                 .ConfigureServices((context, services) =>
                 {
                     // Other services
                     services.AddHealthChecks();
-
+                    services.AddThings();
+                    
                     // Hosted background services (IHostedService and BackgroundService)
                     services.AddHostedService<Worker>();
-                });
+                })
+                .UseConsoleLifetime(options => options.SuppressStatusMessages = false);
 
             return host;
 
