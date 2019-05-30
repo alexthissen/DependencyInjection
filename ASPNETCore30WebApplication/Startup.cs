@@ -52,9 +52,6 @@ namespace ASPNETCore30WebApplication
             services.AddTransient<IOnce, Matchstick>();
             //services.AddDemos();
 
-            // Extension methods for registering service type descriptors
-            services.AddHealthChecks();
-
             // Options to configure options
             services.Configure<GenderizeApiOptions>(Configuration.GetSection("GenderizeApiOptions"));
             services.AddOptions<GenderizeApiOptions>("special")
@@ -81,8 +78,8 @@ namespace ASPNETCore30WebApplication
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddMvc()
-                .AddNewtonsoftJson();
+            
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

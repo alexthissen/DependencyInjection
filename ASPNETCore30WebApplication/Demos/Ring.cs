@@ -13,7 +13,7 @@ namespace ASPNETCore30WebApplication.Demos
     public class TheOneRing : IRing
     {
         private static int NumberOfRings = 0;
-        public TheOneRing(IOnce once)
+        public TheOneRing()
         {
             if (NumberOfRings > 0) throw new InvalidOperationException("There can be only one ring");
             NumberOfRings++;

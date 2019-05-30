@@ -23,7 +23,7 @@ namespace ASPNETCore22WebAPI
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                //.AddControllersAsServices()
+                .AddControllersAsServices()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Add Autofac
@@ -41,7 +41,6 @@ namespace ASPNETCore22WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         
@@ -54,6 +53,5 @@ namespace ASPNETCore22WebAPI
             app.UseHttpsRedirection();
             app.UseMvc();
         }
-
     }
 }

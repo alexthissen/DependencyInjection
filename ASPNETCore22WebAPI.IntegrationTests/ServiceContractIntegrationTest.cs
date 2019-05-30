@@ -19,6 +19,7 @@ namespace ASPNETCore22WebAPI.IntegrationTests
         }
     }
 
+    [TestClass]
     public class ServiceContractIntegrationTest
     {
         TestServer testServer;

@@ -23,10 +23,11 @@ namespace CustomDIWebAPI
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseLightInject()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                        .UseLightInject()
+                        .UseStartup<Startup>();
                 });
     }
 }

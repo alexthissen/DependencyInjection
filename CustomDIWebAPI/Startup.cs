@@ -41,10 +41,10 @@ namespace CustomDIWebAPI
 
             app.UseHttpsRedirection();
 
-            app.UseRouting(routes =>
-            {
-                routes.MapControllers();
-            });
+            //app.UseRouting(routes =>
+            //{
+            //    routes.MapControllers();
+            //});
 
             app.UseAuthorization();
         }

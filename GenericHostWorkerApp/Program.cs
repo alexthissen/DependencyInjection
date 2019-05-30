@@ -60,6 +60,5 @@ namespace GenericHostWorkerApp
             return host;
 
         }
-
     }
 }
