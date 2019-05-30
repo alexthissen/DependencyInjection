@@ -78,7 +78,7 @@ namespace ASPNETCore30WebApplication
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
+
             services.AddMvc();
         }
 

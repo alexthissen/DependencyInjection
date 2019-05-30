@@ -21,6 +21,7 @@ namespace ASPNETCore22WebAPI
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                //.UseStartup<Startup>();
                 .UseStartup(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
     }
 }
