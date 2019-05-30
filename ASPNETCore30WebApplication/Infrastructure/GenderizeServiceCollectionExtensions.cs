@@ -12,10 +12,10 @@ namespace ASPNETCore30WebApplication.Infrastructure
     {
         public static IServiceCollection AddDemos(this IServiceCollection services)
         {
-            services.AddSingleton<IRing, TheOneRing>();
-            services.AddTransient<IOnce, Matchstick>();
+            services.AddSingleton<IThing, Thing>();
+            services.AddTransient<IOnceThing, Something>();
             services.AddTransient(typeof(IBag<>), typeof(Cup<>));
-            services.AddTransient<IOnce, SelfLightingMatchstick>();
+            services.AddTransient<IOnceThing, RecursiveSomething>();
 
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 

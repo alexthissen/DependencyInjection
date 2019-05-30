@@ -1,10 +1,10 @@
 ﻿@using ASPNETCore30WebApplication.Demos
-@inject IRing oneRing
+@inject IThing thing
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome @oneRing.CanIRuleThemAll()</h1>
+    <h1 class="display-4">Welcome @thing.Go()</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

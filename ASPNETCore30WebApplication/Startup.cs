@@ -48,16 +48,16 @@ namespace ASPNETCore30WebApplication
             #region Demo 2 
 
             // Custom registrations
-            services.AddSingleton<IRing, TheOneRing>();
-            services.AddTransient<IOnce, Matchstick>();
+            services.AddSingleton<IThing, Thing>();
+            services.AddTransient<IOnceThing, Something>();
             //services.AddDemos();
 
             // Options to configure options
             services.Configure<GenderizeApiOptions>(Configuration.GetSection("GenderizeApiOptions"));
             services.AddOptions<GenderizeApiOptions>("special")
-                .Configure<IRing, IOnce>((options, ring, once) =>
+                .Configure<IThing, IOnceThing>((options, thing, something) =>
                 {
-                    options.Cache = ring.CanIRuleThemAll();
+                    options.Cache = thing.Go();
                 })
                 .Validate(options => String.IsNullOrEmpty(options.DeveloperApiKey));
 

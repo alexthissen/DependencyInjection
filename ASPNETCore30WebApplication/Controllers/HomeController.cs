@@ -14,16 +14,16 @@ namespace ASPNETCore30WebApplication.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRing ring;
-        private readonly IOnce match;
+        private readonly IThing thing;
+        private readonly IOnceThing something;
 
-        public HomeController(IRing ring, IOnce match)
+        public HomeController(IThing thing, IOnceThing something)
         {
-            this.ring = ring;
-            this.match = match;
+            this.thing = thing;
+            this.something = something;
         }
 
-        public IActionResult Index([FromServices] IOnce otherMatch)
+        public IActionResult Index([FromServices] IOnceThing otherThing)
         {
             return View();
         }
