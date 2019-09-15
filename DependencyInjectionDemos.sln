@@ -3,17 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCore30WebApplication", "ASPNETCore30WebApplication\ASPNETCore30WebApplication.csproj", "{3BC95DCD-C241-4784-9206-8D90DEC0609B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericHostWorkerApp", "GenericHostWorkerApp\GenericHostWorkerApp.csproj", "{38D74F52-9898-449D-A790-DAA59622244C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleContainer.Tests", "SampleContainer.Tests\SampleContainer.Tests.csproj", "{055A41F5-8567-448E-9803-ACB1CD3A0A2E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleContainer", "SampleContainer\SampleContainer.csproj", "{462F2CD0-6123-450E-A9D6-2D439C5403F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCore22WebAPI", "ASPNETCore22WebAPI\ASPNETCore22WebAPI.csproj", "{6BDD8797-B3DC-45EE-93DA-148AC2E013A3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCore22WebAPI.IntegrationTests", "ASPNETCore22WebAPI.IntegrationTests\ASPNETCore22WebAPI.IntegrationTests.csproj", "{4EDBC8C6-71E6-45E2-909D-50C3C6F81C1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroGamingWebApp", "RetroGamingWebApp\RetroGamingWebApp.csproj", "{02401FB5-C8CD-4244-A2AC-B4D41A7B16C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3BC95DCD-C241-4784-9206-8D90DEC0609B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BC95DCD-C241-4784-9206-8D90DEC0609B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BC95DCD-C241-4784-9206-8D90DEC0609B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BC95DCD-C241-4784-9206-8D90DEC0609B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{38D74F52-9898-449D-A790-DAA59622244C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38D74F52-9898-449D-A790-DAA59622244C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38D74F52-9898-449D-A790-DAA59622244C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,14 +29,10 @@ Global
 		{462F2CD0-6123-450E-A9D6-2D439C5403F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{462F2CD0-6123-450E-A9D6-2D439C5403F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{462F2CD0-6123-450E-A9D6-2D439C5403F5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6BDD8797-B3DC-45EE-93DA-148AC2E013A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BDD8797-B3DC-45EE-93DA-148AC2E013A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BDD8797-B3DC-45EE-93DA-148AC2E013A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BDD8797-B3DC-45EE-93DA-148AC2E013A3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4EDBC8C6-71E6-45E2-909D-50C3C6F81C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EDBC8C6-71E6-45E2-909D-50C3C6F81C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EDBC8C6-71E6-45E2-909D-50C3C6F81C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EDBC8C6-71E6-45E2-909D-50C3C6F81C1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02401FB5-C8CD-4244-A2AC-B4D41A7B16C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02401FB5-C8CD-4244-A2AC-B4D41A7B16C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02401FB5-C8CD-4244-A2AC-B4D41A7B16C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02401FB5-C8CD-4244-A2AC-B4D41A7B16C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
