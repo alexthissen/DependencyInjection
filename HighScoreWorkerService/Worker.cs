@@ -1,19 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace GenericHostWorkerApp
+namespace HighScoreWorkerService
 {
     public class Worker : BackgroundService
     {
         private readonly IServiceScopeFactory serviceScopeFactory;
         private readonly ILogger<Worker> logger;
 
-        public Worker(IServiceScopeFactory serviceScopeFactory, ILogger<Worker> logger)
+        public Worker(ILogger<Worker> logger, IServiceScopeFactory serviceScopeFactory)
         {
             this.serviceScopeFactory = serviceScopeFactory;
             this.logger = logger;
@@ -21,25 +22,24 @@ namespace GenericHostWorkerApp
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            logger.LogInformation($"Started work in ExecuteAsync at: {DateTime.Now}");
-
             while (!stoppingToken.IsCancellationRequested)
             {
+                logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                
                 using (var scope = serviceScopeFactory.CreateScope())
                 {
-                    IThingService scoped = scope.ServiceProvider.GetRequiredService<IThingService>();
-                    await MakeThingDoWork(scoped);
+                    IHighScoreService scoped = scope.ServiceProvider.GetRequiredService<IHighScoreService>();
+                    await HandleHighScore(scoped);
                 }
-
                 await Task.Delay(1000, stoppingToken);
             }
         }
 
-        private Task<IEnumerable<string>> MakeThingDoWork(IThingService service)
+        private Task HandleHighScore(IHighScoreService scoped)
         {
-            logger.LogInformation($"Worker running at: {DateTime.Now}");
-            return Task.FromResult(service.ProduceValues());
-        }
+            // Do handling here
 
+            return Task.CompletedTask;
+        }
     }
 }
