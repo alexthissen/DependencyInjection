@@ -8,17 +8,12 @@ using NSwag.Annotations;
 
 namespace LeaderboardWebApi.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    [OpenApiIgnore]
+    public class HomeController : Controller
     {
-        [SwaggerIgnore]
-        public class HomeController : Controller
+        public IActionResult Index()
         {
-            public IActionResult Index()
-            {
-                return new RedirectResult("~/openapi");
-            }
+            return new RedirectResult("~/openapi");
         }
     }
 }

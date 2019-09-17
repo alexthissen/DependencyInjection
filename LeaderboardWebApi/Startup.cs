@@ -133,15 +133,22 @@ namespace LeaderboardWebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, LeaderboardContext context)
         {
-            if (env.IsDevelopment())
-            {
-                DbInitializer.Initialize(context).Wait();
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseHealthChecks("/health");
+            app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
 
-            app.UseSwagger(config =>
+        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment env, LeaderboardContext context)
+        {
+            DbInitializer.Initialize(context).Wait();
+            app.UseDeveloperExceptionPage();
+
+            app.UseOpenApi(config =>
             {
                 config.DocumentName = "v1";
                 config.Path = "/openapi/v1.json";
@@ -154,6 +161,7 @@ namespace LeaderboardWebApi
                 config.DocumentPath = "/openapi/v1.json";
             });
 
+            app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
@@ -162,5 +170,6 @@ namespace LeaderboardWebApi
                 endpoints.MapControllers();
             });
         }
+
     }
 }

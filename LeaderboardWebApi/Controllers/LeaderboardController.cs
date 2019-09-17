@@ -21,7 +21,7 @@ namespace LeaderboardWebApi.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Produces("application/xml", "application/json")]
-    [SwaggerTag("Leaderboard", Description = "New operations that should be only visible for version 3")]
+    [OpenApiTag("Leaderboard", Description = "New operations that should be only visible for version 3")]
     [ApiExplorerSettings(IgnoreApi = false, GroupName = nameof(LeaderboardController))]
     public class LeaderboardController : Controller
     {
@@ -56,7 +56,7 @@ namespace LeaderboardWebApi.Controllers
                     Nickname = score.Gamer.Nickname 
                 });
 
-            return Ok(await scores.ToListAsync());
+            return Ok(await scores.ToListAsync().ConfigureAwait(false));
         }
     }
 }

@@ -20,7 +20,7 @@
     "LeaderboardWebApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "api/v1/Leaderboard",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
