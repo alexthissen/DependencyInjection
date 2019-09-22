@@ -1,17 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
-//using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Polly;
 using Refit;
 using RetroGamingWebApp.Proxy;
@@ -83,6 +77,8 @@ namespace RetroGamingWebApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
+            // Can use app.ApplicationServices for IServiceProvider reference
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

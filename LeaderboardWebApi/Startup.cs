@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LeaderboardWebApi.Infrastructure;
+using LightInject;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +45,9 @@ namespace LeaderboardWebApi
                 });
             });
 
+            services.AddScoped<IThing, Thing>();
+            //services.AddScoped<IThing, RecursiveThing>();
+
             ConfigureApiOptions(services);
             ConfigureTelemetry(services);
             ConfigureOpenApi(services);
@@ -51,7 +55,9 @@ namespace LeaderboardWebApi
             ConfigureHealth(services);
             ConfigureVersioning(services);
 
-            services.AddControllers();
+            services.AddControllers()
+                // For resolving controllers as services via DI
+                .AddControllersAsServices();
         }
 
         private void ConfigureVersioning(IServiceCollection services)
@@ -86,6 +92,12 @@ namespace LeaderboardWebApi
                 options.DeveloperMode = env.IsDevelopment();
                 options.InstrumentationKey = Configuration["ApplicationInsights:InstrumentationKey"];
             });
+
+            //var performanceCounterService = services.FirstOrDefault<ServiceDescriptor>(t => t.ImplementationType == typeof(PerformanceCollectorModule));
+            //if (performanceCounterService != null)
+            //{
+            //    services.Remove(performanceCounterService);
+            //}
         }
 
         private void ConfigureSecurity(IServiceCollection services)
@@ -130,8 +142,15 @@ namespace LeaderboardWebApi
             });
         }
 
+        public void ConfigureContainer(IServiceContainer container)
+        {
+            if (container == null) throw new ArgumentNullException(nameof(container));
+            container.RegisterFrom<CompositionRoot>();
+        }
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, LeaderboardContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
@@ -143,8 +162,11 @@ namespace LeaderboardWebApi
             });
         }
 
-        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment env, LeaderboardContext context)
+        public void ConfigureDevelopment(IApplicationBuilder app, IWebHostEnvironment env, 
+            LeaderboardContext context, TelemetryConfiguration configuration)
         {
+            // configuration.DisableTelemetry = true;
+
             DbInitializer.Initialize(context).Wait();
             app.UseDeveloperExceptionPage();
 
@@ -170,6 +192,5 @@ namespace LeaderboardWebApi
                 endpoints.MapControllers();
             });
         }
-
     }
 }

@@ -13,7 +13,7 @@ namespace RetroGamingWebApp
         public void Initialize(ITelemetry telemetry)
         {
             if (telemetry == null) throw new ArgumentNullException(nameof(telemetry));
-            telemetry.Context.Cloud.RoleName = "Gaming Web App";
+            telemetry.Context.Cloud.RoleName = "Retro Gaming Web App";
         }
     }
 }

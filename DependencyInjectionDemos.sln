@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleContainer.Tests", "Sa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleContainer", "SampleContainer\SampleContainer.csproj", "{462F2CD0-6123-450E-A9D6-2D439C5403F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroGamingWebApp", "RetroGamingWebApp\RetroGamingWebApp.csproj", "{02401FB5-C8CD-4244-A2AC-B4D41A7B16C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RetroGamingWebApp", "RetroGamingWebApp\RetroGamingWebApp.csproj", "{02401FB5-C8CD-4244-A2AC-B4D41A7B16C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeaderboardWebApi", "LeaderboardWebApi\LeaderboardWebApi.csproj", "{6736AB6A-BED7-42E2-94B8-9DF8DDAF0AD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeaderboardWebApi", "LeaderboardWebApi\LeaderboardWebApi.csproj", "{6736AB6A-BED7-42E2-94B8-9DF8DDAF0AD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HighScoreWorkerService", "HighScoreWorkerService\HighScoreWorkerService.csproj", "{49B96BE0-0B9E-4B65-80D7-3C740E7C7B49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HighScoreWorkerService", "HighScoreWorkerService\HighScoreWorkerService.csproj", "{49B96BE0-0B9E-4B65-80D7-3C740E7C7B49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeaderboardWebApi.IntegrationTests", "LeaderboardWebApi.IntegrationTests\LeaderboardWebApi.IntegrationTests.csproj", "{2A50FFA1-6641-4E14-B28C-86535661AD3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{49B96BE0-0B9E-4B65-80D7-3C740E7C7B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49B96BE0-0B9E-4B65-80D7-3C740E7C7B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49B96BE0-0B9E-4B65-80D7-3C740E7C7B49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A50FFA1-6641-4E14-B28C-86535661AD3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A50FFA1-6641-4E14-B28C-86535661AD3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A50FFA1-6641-4E14-B28C-86535661AD3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A50FFA1-6641-4E14-B28C-86535661AD3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

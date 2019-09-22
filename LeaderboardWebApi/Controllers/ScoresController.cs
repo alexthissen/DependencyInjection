@@ -25,15 +25,16 @@ namespace LeaderboardWebApi.Controllers
         public async Task<IEnumerable<Score>> Get(string game)
         {
             var scores = context.Scores.Where(s => s.Game == game).Include(s => s.Gamer);
-            return await scores.ToListAsync();
+            return await scores.ToListAsync().ConfigureAwait(false);
         }
 
         [HttpPost("{nickname}/{game}")]
-        public async Task PostScore(string nickname, string game, [FromBody] int points)
+        public async Task PostScore(string nickname, string game, [FromBody] int points, [FromServices] IThing thing)
         {
             // Lookup gamer based on nickname
             Gamer gamer = await context.Gamers
-                .FirstOrDefaultAsync(g => g.Nickname.ToLower() == nickname.ToLower());
+                .FirstOrDefaultAsync(g => g.Nickname.ToLower() == nickname.ToLower())
+                .ConfigureAwait(false);
 
             if (gamer == null) return;
 
@@ -41,7 +42,8 @@ namespace LeaderboardWebApi.Controllers
             var score = await context.Scores
                 .Where(s => s.Game == game && s.Gamer == gamer)
                 .OrderByDescending(s => s.Points)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
 
             if (score == null)
             {
@@ -53,7 +55,7 @@ namespace LeaderboardWebApi.Controllers
                 if (score.Points > points) return;
                 score.Points = points;
             }
-            await context.SaveChangesAsync();
+            await context.SaveChangesAsync().ConfigureAwait(false);
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -18,11 +17,12 @@ namespace RetroGamingWebApp.Pages
         private readonly IOptionsSnapshot<LeaderboardApiOptions> options;
         private readonly ILeaderboardClient proxy;
 
-        public IndexModel(ILeaderboardClient proxy, IOptionsSnapshot<LeaderboardApiOptions> options, ILoggerFactory loggerFactory)
+        public IndexModel(ILoggerFactory loggerFactory, ILeaderboardClient proxy, 
+            IOptionsSnapshot<LeaderboardApiOptions> options)
         {
             this.logger = loggerFactory.CreateLogger<IndexModel>();
             this.options = options;
-            this.proxy = proxy;
+            this.proxy = proxy; 
         }
 
         public IEnumerable<HighScore> Scores { get; private set; }

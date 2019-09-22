@@ -26,14 +26,11 @@ namespace LeaderboardWebApi.Controllers
     public class LeaderboardController : Controller
     {
         private readonly LeaderboardContext context;
-        //private readonly LeaderboardListLimitFeature listLimitToggle;
         private readonly ILogger<LeaderboardController> logger;
 
-        public LeaderboardController(LeaderboardContext context, /*LeaderboardListLimitFeature toggle,*/
-            ILoggerFactory loggerFactory = null)
+        public LeaderboardController(LeaderboardContext context, ILoggerFactory loggerFactory = null)
         {
             this.context = context;
-            //this.listLimitToggle = toggle;
             this.logger = loggerFactory?.CreateLogger<LeaderboardController>();
         }
 
