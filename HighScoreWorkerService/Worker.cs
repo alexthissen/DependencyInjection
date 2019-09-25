@@ -15,7 +15,8 @@ namespace HighScoreWorkerService
         private readonly ILogger<Worker> logger;
 
         public Worker(ILogger<Worker> logger, IHighScoreService service, 
-            WorkerServiceDbContext context, IServiceScopeFactory serviceScopeFactory)
+            //WorkerServiceDbContext context, 
+            IServiceScopeFactory serviceScopeFactory)
         {
             this.serviceScopeFactory = serviceScopeFactory;
             this.logger = logger;
