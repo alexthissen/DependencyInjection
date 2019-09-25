@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -18,6 +19,7 @@ namespace HighScoreWorkerService
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseEnvironment("Development")
                 .UseDefaultServiceProvider((context, options) =>
                 {
                     options.ValidateScopes = context.HostingEnvironment.IsDevelopment();
@@ -25,8 +27,12 @@ namespace HighScoreWorkerService
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddDbContext<WorkerServiceDbContext>(options =>
+                    {
+                        options.UseInMemoryDatabase(databaseName: "workerservice");
+                    });
                     services.AddTransient<IHighScoreService, HighScoreService>();
-                    // services.AddHighScores();
+                    //services.AddHighScores();
 
                     //services.AddScoped<IThing, Thing>();
                     //services.AddSingleton<OuterThing>();
@@ -36,5 +42,13 @@ namespace HighScoreWorkerService
                     services.AddHostedService<Worker>();
                 })
                 .UseConsoleLifetime(options => options.SuppressStatusMessages = false);
+    }
+
+    public class WorkerServiceDbContext: DbContext
+    {
+        public WorkerServiceDbContext(DbContextOptions<WorkerServiceDbContext> options)
+            : base(options)
+        {
+        }
     }
 }
