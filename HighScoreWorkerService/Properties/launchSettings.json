@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "HighScoreWorkerService": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Production"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
