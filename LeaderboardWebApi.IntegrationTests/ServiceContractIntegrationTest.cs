@@ -1,8 +1,10 @@
 using LightInject.Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -18,11 +20,16 @@ namespace LeaderboardWebApi.IntegrationTests
         [TestInitialize]
         public void Initialize()
         {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+
             var builder = new WebHostBuilder()
-                .UseEnvironment("Development")
+                .UseConfiguration(configuration)
                 .UseStartup(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)
                 .UseLightInject()
-                .UseEnvironment("Test")
+                .UseEnvironment("IntegrationTest")
                 .ConfigureTestServices(services =>
                 {
                     services.AddTransient<IThing, MockThing>();
@@ -42,7 +49,7 @@ namespace LeaderboardWebApi.IntegrationTests
             // Assert
             response.EnsureSuccessStatusCode();
             string responseHtml = await response.Content.ReadAsStringAsync();
-            Assert.IsTrue(responseHtml.Contains("mock1"));
+            Assert.IsTrue(responseHtml.Contains("1337"));
         }
     }
 

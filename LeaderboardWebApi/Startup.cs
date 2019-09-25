@@ -45,9 +45,6 @@ namespace LeaderboardWebApi
                 });
             });
 
-            services.AddScoped<IThing, Thing>();
-            //services.AddScoped<IThing, RecursiveThing>();
-
             ConfigureApiOptions(services);
             ConfigureTelemetry(services);
             ConfigureOpenApi(services);
@@ -56,8 +53,8 @@ namespace LeaderboardWebApi
             ConfigureVersioning(services);
 
             services.AddControllers()
-                // For resolving controllers as services via DI
-                .AddControllersAsServices();
+                .AddNewtonsoftJson()
+                .AddControllersAsServices(); // For resolving controllers as services via DI
         }
 
         private void ConfigureVersioning(IServiceCollection services)

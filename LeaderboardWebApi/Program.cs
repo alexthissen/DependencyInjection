@@ -21,11 +21,6 @@ namespace LeaderboardWebApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseDefaultServiceProvider((context, options) =>
-                {
-                    options.ValidateScopes = context.HostingEnvironment.IsDevelopment();
-                    options.ValidateOnBuild = true;
-                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     //webBuilder.UseStartup<Startup>();

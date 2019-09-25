@@ -14,7 +14,7 @@ namespace HighScoreWorkerService
         private readonly IServiceScopeFactory serviceScopeFactory;
         private readonly ILogger<Worker> logger;
 
-        public Worker(ILogger<Worker> logger, IServiceScopeFactory serviceScopeFactory)
+        public Worker(ILogger<Worker> logger, IHighScoreService service, IServiceScopeFactory serviceScopeFactory)
         {
             this.serviceScopeFactory = serviceScopeFactory;
             this.logger = logger;

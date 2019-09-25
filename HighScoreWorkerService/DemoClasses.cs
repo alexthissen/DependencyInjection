@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LeaderboardWebApi
+namespace HighScoreWorkerService
 {
     public interface IThing
     {
@@ -13,10 +12,7 @@ namespace LeaderboardWebApi
 
     public class Thing : IThing
     {
-        public Thing(IHttpContextAccessor accessor)
-        {
-
-        }
+        public Thing() { }
         public void Trigger() { }
     }
 
