@@ -31,12 +31,10 @@ namespace HighScoreWorkerService
                     {
                         options.UseInMemoryDatabase(databaseName: "workerservice");
                     });
-                    services.AddTransient<IHighScoreService, HighScoreService>();
-                    //services.AddHighScores();
 
-                    //services.AddScoped<IThing, Thing>();
-                    //services.AddSingleton<OuterThing>();
-                    //services.AddScoped<IThing, RecursiveThing>();
+                    services.AddScoped<IHighScoreService, HighScoreService>();
+
+                    //services.AddThings();
 
                     // Hosted background services (IHostedService and BackgroundService)
                     services.AddHostedService<Worker>();

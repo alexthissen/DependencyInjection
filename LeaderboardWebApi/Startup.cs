@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LeaderboardWebApi.Infrastructure;
 using LightInject;
 using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -45,6 +46,8 @@ namespace LeaderboardWebApi
                 });
             });
 
+            services.AddThings();
+
             ConfigureApiOptions(services);
             ConfigureTelemetry(services);
             ConfigureOpenApi(services);
@@ -83,6 +86,7 @@ namespace LeaderboardWebApi
         private void ConfigureTelemetry(IServiceCollection services)
         {
             services.AddSingleton<ITelemetryInitializer, ServiceNameInitializer>();
+
             var env = services.BuildServiceProvider().GetRequiredService<IHostEnvironment>();
             services.AddApplicationInsightsTelemetry(options =>
             {
@@ -90,11 +94,11 @@ namespace LeaderboardWebApi
                 options.InstrumentationKey = Configuration["ApplicationInsights:InstrumentationKey"];
             });
 
-            //var performanceCounterService = services.FirstOrDefault<ServiceDescriptor>(t => t.ImplementationType == typeof(PerformanceCollectorModule));
-            //if (performanceCounterService != null)
-            //{
-            //    services.Remove(performanceCounterService);
-            //}
+            var performanceCounterService = services.FirstOrDefault<ServiceDescriptor>(t => t.ImplementationType == typeof(PerformanceCollectorModule));
+            if (performanceCounterService != null)
+            {
+                services.Remove(performanceCounterService);
+            }
         }
 
         private void ConfigureSecurity(IServiceCollection services)
@@ -145,7 +149,6 @@ namespace LeaderboardWebApi
             container.RegisterFrom<CompositionRoot>();
         }
 
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -180,12 +183,12 @@ namespace LeaderboardWebApi
                 config.DocumentPath = "/openapi/v1.json";
             });
 
-            app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHealthChecks("/health");
                 endpoints.MapControllers();
             });
         }

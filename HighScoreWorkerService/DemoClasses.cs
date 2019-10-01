@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,5 +31,16 @@ namespace HighScoreWorkerService
     {
         public RecursiveThing(IThing once) { }
         public void Trigger() { }
+    }
+
+    public static class ThingsServiceCollectionExtensions
+    {
+        public static IServiceCollection AddThings(this IServiceCollection services)
+        {
+            return services
+                .AddScoped<IThing, Thing>()
+                .AddSingleton<OuterThing>()
+                .AddScoped<IThing, RecursiveThing>();
+        }
     }
 }

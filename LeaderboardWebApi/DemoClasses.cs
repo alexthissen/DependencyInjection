@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,5 +35,13 @@ namespace LeaderboardWebApi
     {
         public RecursiveThing(IThing once) { }
         public void Trigger() { }
+    }
+
+    public static class ThingsServiceCollectionExtensions
+    {
+        public static IServiceCollection AddThings(this IServiceCollection services)
+        {
+            return services.AddScoped<IThing, Thing>();
+        }
     }
 }

@@ -42,7 +42,10 @@ namespace RetroGamingWebApp
         private void ConfigureTelemetry(IServiceCollection services)
         {
             services.AddSingleton<ITelemetryInitializer, ServiceNameInitializer>();
+
+            // Rather use Startup constructor with IHostEnvironment
             var env = services.BuildServiceProvider().GetRequiredService<IHostEnvironment>();
+            
             services.AddApplicationInsightsTelemetry(options =>
             {
                 options.DeveloperMode = env.IsDevelopment();

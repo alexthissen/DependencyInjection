@@ -10,8 +10,11 @@ namespace HighScoreWorkerService
         void HandleScore();
     }
 
-    public class HighScoreService : IHighScoreService
+    public class HighScoreService : IHighScoreService, IDisposable
     {
+        public void Dispose() 
+        { }
+
         public void HandleScore()
         {
             throw new NotImplementedException();

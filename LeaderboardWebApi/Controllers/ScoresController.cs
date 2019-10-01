@@ -29,7 +29,8 @@ namespace LeaderboardWebApi.Controllers
         }
 
         [HttpPost("{nickname}/{game}")]
-        public async Task PostScore(string nickname, string game, [FromBody] int points, [FromServices] IThing thing)
+        public async Task PostScore(string nickname, string game, [FromBody] int points, 
+            [FromServices] IThing thing)
         {
             // Lookup gamer based on nickname
             Gamer gamer = await context.Gamers
