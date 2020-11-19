@@ -41,6 +41,7 @@ namespace HighScoreWorkerService
         private Task HandleHighScore(IHighScoreService scoped)
         {
             // Do handling here
+            scoped.HandleScore();
 
             return Task.CompletedTask;
         }

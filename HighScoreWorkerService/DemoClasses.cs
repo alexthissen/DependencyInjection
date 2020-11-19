@@ -39,7 +39,7 @@ namespace HighScoreWorkerService
         {
             return services
                 .AddScoped<IThing, Thing>()
-                .AddSingleton<OuterThing>()
+                //.AddSingleton<OuterThing>();
                 .AddScoped<IThing, RecursiveThing>();
         }
     }

@@ -81,7 +81,7 @@ namespace RetroGamingWebApp
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
             // Can use app.ApplicationServices for IServiceProvider reference
-
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

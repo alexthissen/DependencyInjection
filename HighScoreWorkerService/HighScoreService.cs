@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,12 +13,19 @@ namespace HighScoreWorkerService
 
     public class HighScoreService : IHighScoreService, IDisposable
     {
+        private readonly ILogger<HighScoreService> logger;
+
+        public HighScoreService(ILogger<HighScoreService> logger)
+        {
+            this.logger = logger;
+        }
+
         public void Dispose() 
         { }
 
         public void HandleScore()
         {
-            throw new NotImplementedException();
+            logger.LogInformation("Score has been handled");
         }
     }
 
